@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# HW1
+test/
+HW1/*.pptx
+HW1/sample*
