@@ -128,12 +128,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# HW General
+*.pptx
+test*
+temp*
+sample*
+
 # HW1
-test/
-HW1/*.pptx
-HW1/sample*
 HW1/hw1_gradient*
 
 # HW2
-HW2/*.pptx
-HW2/sample*
+HW2/output*
