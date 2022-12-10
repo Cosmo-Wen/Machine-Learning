@@ -22,7 +22,11 @@ class Activation():
 
             ### PASTE YOUR CODE HERE ###
             ### START CODE HERE ###
-
+            A = np.zeros(Z.shape)
+            for i in range(Z.shape[0]):
+                for j in range(Z.shape[1]):
+                    A[i][j] = 1 / (np.exp(-Z[i][j]) + 1) if Z[i][j] >= 0 else np.exp(Z[i][j]) / (1 + np.exp(Z[i][j]))
+            self.cache = Z
             ### END CODE HERE ###
             
             return A
@@ -41,7 +45,8 @@ class Activation():
 
             ### PASTE YOUR CODE HERE ###
             ### START CODE HERE ###
-
+            A = np.exp(Z - np.max(Z, axis = 0)) / np.sum(np.exp(Z - np.max(Z, axis = 0)), axis = 0)
+            self.cache = Z
             ### END CODE HERE ###
             
             return A
@@ -59,7 +64,9 @@ class Activation():
             
             ### PASTE YOUR CODE HERE ###
             ### START CODE HERE ###
-
+            A = Z
+            A[A < 0] = 0
+            self.cache = Z
             ### END CODE HERE ###
             
             assert(A.shape == Z.shape)
@@ -79,7 +86,12 @@ class Activation():
             
             ### PASTE YOUR CODE HERE ###
             ### START CODE HERE ###
-
+            Z = self.cache
+            dZ = np.zeros(Z.shape)
+            for i in range(Z.shape[0]):
+                for j in range(Z.shape[1]):
+                    sig = 1 / (np.exp(-Z[i][j]) + 1) if Z[i][j] >= 0 else np.exp(Z[i][j]) / (1 + np.exp(Z[i][j]))
+                    dZ[i][j] = sig * (1 - sig) * dA[i][j]
             ### END CODE HERE ###
             
             assert (dZ.shape == Z.shape)
@@ -98,7 +110,9 @@ class Activation():
             
             ### PASTE YOUR CODE HERE ###
             ### START CODE HERE ### 
-
+            Z = self.cache
+            dZ = dA 
+            dZ[Z <= 0] = 0 
             ### END CODE HERE ###
             
             assert (dZ.shape == Z.shape)
@@ -118,7 +132,9 @@ class Activation():
             
             ### PASTE YOUR CODE HERE ###
             ### START CODE HERE ### 
-
+            Z = self.cache
+            s = np.exp(Z - np.max(Z, axis = 0)) / np.sum(np.exp(Z - np.max(Z, axis = 0)), axis = 0)
+            dZ = s - Y
             ### END CODE HERE ###
             
             assert (dZ.shape == Z.shape)

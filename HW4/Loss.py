@@ -17,7 +17,7 @@ def compute_BCE_cost(AL, Y):
 
     ### PASTE YOUR CODE HERE ###
     ### START CODE HERE ###
-
+    cost = np.sum(Y * np.log(AL + 1e-5) + (1 - Y) * np.log(1 - AL + 1e-5)) / -m
     ### END CODE HERE ###
     
     cost = np.squeeze(cost)      # To make sure your cost's shape is what we expect (e.g. this turns [[17]] into 17).
